@@ -20,8 +20,10 @@ Dijkstra算法是由荷兰计算机科学家艾兹格·迪科斯彻（Edsger Wyb
 
 ```python 
 import heapq 
-def dijkstra(graph, source): 
-# 初始化距离字典，将所有顶点的距离设为无穷大 dist = {vertex: float('inf') for vertex in graph} # 源顶点到自身的距离为0 dist[source] = 0 # 优先队列，存储待处理的顶点和距离 pq = [(0, source)] while pq: # 取出距离最小的顶点及其距离 current_dist, current_vertex = heapq.heappop(pq) # 如果当前距离大于已记录的距离，跳过 if current_dist > dist[current_vertex]: continue # 遍历当前顶点的邻居 for neighbor, weight in graph[current_vertex].items(): # 计算到邻居的新距离 distance = current_dist + weight # 如果新距离更短，更新距离并将邻居加入优先队列 if distance < dist[neighbor]: dist[neighbor] = distance heapq.heappush(pq, (distance, neighbor)) return dist # 示例图 graph = { 'A': {'B': 5, 'C': 2}, 'B': {'A': 5, 'C': 1, 'D': 3}, 'C': {'A': 2, 'B': 1, 'D': 6}, 'D': {'B': 3, 'C': 6} } source_vertex = 'A' shortest_distances = dijkstra(graph, source_vertex) print("从源顶点", source_vertex, "到其他顶点的最短距离：", shortest_distances) 
+def dijkstra(graph, start): 
+	distances = {node: float('inf') for node in graph} distances[start] = 0 priority_queue = [(0, start)] 
+	while priority_queue: 
+		current_distance, current_node = heapq.heappop(priority_queue) if current_distance > distances[current_node]: continue for neighbor, weight in graph[current_node].items(): distance = current_distance + weight if distance < distances[neighbor]: distances[neighbor] = distance heapq.heappush(priority_queue, (distance, neighbor)) return distances graph = { 'A': {'B': 1, 'C': 4}, 'B': {'A': 1, 'C': 2, 'D': 5}, 'C': {'A': 4, 'B': 2, 'D': 1}, 'D': {'B': 5, 'C': 1} } start_node = 'A' result = dijkstra(graph, start_node) print(f"从节点 {start_node} 到各节点的最短距离: {result}")
 ``` 
 
 ### 复杂度分析 
@@ -33,5 +35,5 @@ def dijkstra(graph, source):
 - **网络路由**：在计算机网络中，确定数据包从源节点到目标节点的最佳传输路径。 
 - **任务调度**：在项目管理中，安排任务的执行顺序，以最小化总完成时间。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEzMDMxMjczM119
+eyJoaXN0b3J5IjpbMTM5NzQ4NTE5NV19
 -->
