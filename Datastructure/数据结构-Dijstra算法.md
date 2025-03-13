@@ -43,8 +43,15 @@ def dijkstra(graph, source):
 			heapq.heappush(pq, (distance, neighbor)) 
 	return dist 
 	# 示例图 
-	graph = { 'A': {'B': 5, 'C': 2}, 
-	'B': {'A': 5, 'C': 1, 'D': 3}, 'C': {'A': 2, 'B': 1, 'D': 6}, 'D': {'B': 3, 'C': 6} } source_vertex = 'A' shortest_distances = dijkstra(graph, source_vertex) print("从源顶点", source_vertex, "到其他顶点的最短距离：", shortest_distances)
+	graph = { 
+	'A': {'B': 5, 'C': 2}, 
+	'B': {'A': 5, 'C': 1, 'D': 3}, 
+	'C': {'A': 2, 'B': 1, 'D': 6}, 
+	'D': {'B': 3, 'C': 6} 
+	} 
+	source_vertex = 'A' 
+	shortest_distances = dijkstra(graph, source_vertex) 
+	print("从源顶点", source_vertex, "到其他顶点的最短距离：", shortest_distances)
 ``` 
 
 ### 复杂度分析 
@@ -56,5 +63,5 @@ def dijkstra(graph, source):
 - **网络路由**：在计算机网络中，确定数据包从源节点到目标节点的最佳传输路径。 
 - **任务调度**：在项目管理中，安排任务的执行顺序，以最小化总完成时间。
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1ODczNzM4N119
+eyJoaXN0b3J5IjpbMTI0MzQ5MTU0M119
 -->
